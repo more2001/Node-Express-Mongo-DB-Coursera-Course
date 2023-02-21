@@ -7,10 +7,16 @@ const mongoose = require('mongoose');
 var session = require('express-session');
 var FileStore = require('session-file-store')(session);
 const Dishes = require("./models/dishes");
+<<<<<<< Updated upstream
+
+=======
+var passport = require('passport');
+var authenticate = require('./authenticate');
+var config = require('./config');
+>>>>>>> Stashed changes
 
 
-
-const url = "mongodb://localhost:27017/conFusion";
+const url = config.mongoUrl;
 const connect = mongoose.connect(url);
 connect.then(
   (db) => {
@@ -40,6 +46,7 @@ app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser('12345-67890-09876-54321'));
 
 
+<<<<<<< Updated upstream
 app.use(session({
   name: 'session-id',
   secret: '12345-67890-09876-54321',
@@ -48,10 +55,14 @@ app.use(session({
   cookie: { maxAge: 172800000 },
   store: new FileStore()
 }));
+=======
+app.use(passport.initialize());
+>>>>>>> Stashed changes
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+<<<<<<< Updated upstream
 function auth (req, res, next) {
   console.log(req.session);
 
@@ -97,6 +108,8 @@ Example: ['user', 'password']
 
 
 app.use(auth);
+=======
+>>>>>>> Stashed changes
 
 app.use(express.static(path.join(__dirname, 'public')));
 

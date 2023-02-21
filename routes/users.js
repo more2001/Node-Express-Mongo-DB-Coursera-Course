@@ -2,6 +2,11 @@ var express = require("express");
 var router = express.Router();
 const bodyParser = require("body-parser");
 var User = require("../models/user");
+<<<<<<< Updated upstream
+=======
+var passport = require('passport');
+var authenticate = require('../authenticate');
+>>>>>>> Stashed changes
 
 router.use(bodyParser.json());
 
@@ -21,6 +26,7 @@ router.post('/signup', (req, res, next) => {
     else {
       return User.create({username: req.body.username, password: req.body.password});
     }
+<<<<<<< Updated upstream
   })
   .then((user) => {
     res.statusCode = 200;
@@ -28,6 +34,16 @@ router.post('/signup', (req, res, next) => {
     res.json({status: 'Registration Successful!', user: user});
   }, (err) => next(err))
   .catch((err) => next(err));
+=======
+  });
+});
+
+router.post('/login', passport.authenticate('local'), (req, res) => {
+  var token = authenticate.getToken({_id: req.user._id});
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'application/json');
+  res.json({success: true, token: token, status: 'You are successfully logged in!'});
+>>>>>>> Stashed changes
 });
 
 router.post('/login', (req, res, next) => {
