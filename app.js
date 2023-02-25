@@ -68,30 +68,6 @@ function auth (req, res, next) {
     next();
   }
 }
-/*
-
-1. authHeader.split(' ') - This splits the authentication header into an array with two elements: "Basic" and the encoded credentials.
-
-Example: ['Basic', 'dXNlcjpwYXNzd29yZA==']
-
-2. authHeader.split(' ')[1] - This retrieves the second element from the array, which contains the encoded credentials.
-
-Example: 'dXNlcjpwYXNzd29yZA=='
-
-3. new Buffer.from(authHeader.split(' ')[1], 'base64') - This creates a new Buffer object from the base64-encoded string.
-
-Example: <Buffer 75 73 65 72 3a 70 61 73 73 77 6f 72 64>
-
-4. .toString() - This converts the Buffer object to a string.
-
-Example: 'user:password'
-
-5.  .split(':') - This splits the string into an array with two elements: the username and password.
-
-Example: ['user', 'password']
-
-*/
-
 
 app.use(auth);
 
